@@ -1,0 +1,26 @@
+<!-- Splash/Logo Screen -->
+<!-- <div class="splash-screen" *ngIf="showSplash">
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo" class="logo" />
+      <p class="tagline">Your Smart Access Partner</p>
+    </div>
+</div> -->
+  
+
+
+<!-- Main Landing Screen -->
+<div class="container" (click)="activateOtp()" [ngClass]="{ 'slide-left': showOtp }">
+    <div class="left-pane"></div>
+    <div class="right-pane">
+      <div *ngIf="showOtp" class="otp-container">
+        <h2>Enter OTP</h2>
+        <input type="text" maxlength="1" *ngFor="let digit of [1,2,3,4]" class="otp-input" />
+      </div>
+    </div>
+</div>
+
+<!-- Animated arrow indicator
+<div *ngIf="!showSplash && showOtp" class="click-arrow">
+    <img src="assets/next.png" alt="Click to continue" />
+</div> -->
+  

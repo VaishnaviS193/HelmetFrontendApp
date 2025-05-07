@@ -1,0 +1,151 @@
+.container {
+    display: flex;
+    width: 200vw; /* 2 full screen widths */
+    height: 100vh;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .container.slide-left {
+    transform: translateX(-66.66vw);
+  }
+
+  &.slide-left {
+    transform: translateX(-66.66vw);
+  }
+  
+  .left-pane {
+    background: linear-gradient(to right, #ed055a, #6e30a4); /* Dual-color */
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+  }
+  
+  .right-pane {
+    width: 100vw;
+    height: 100vh;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .otp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .otp-container h2 {
+    margin-bottom: 16px;
+  }
+  
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    text-align: center;
+    font-size: 20px;
+  }
+  
+ /* Splash screen overlay */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+/* Logo container inside splash screen */
+.logo-container {
+    text-align: center;
+    color: white;
+    animation: popIn 1s ease-in-out;
+  }
+  
+
+  .logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 16px;
+    animation: rotateIn 2s ease;  /* Rotate logo on splash */
+  }
+
+  /* Tagline animation */
+.tagline {
+    font-size: 20px;
+    font-weight: 500;
+    animation: fadeInText 2s ease-in;
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  
+  @keyframes popIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes rotateIn {
+    0% {
+      transform: rotate(-180deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotate(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInText {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .click-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* font-size: 40px; */
+    /* color: #333; */
+    animation: bounceArrow 1s infinite;
+    z-index: 5;
+  }
+
+  .click-arrow img {
+    width: 100px; /* adjust size as needed */
+    height: auto;
+  }
+
+  @keyframes bounceArrow {
+    0%, 100% {
+      transform: translateY(-50%) translateX(0);
+    }
+    50% {
+      transform: translateY(-50%) translateX(10px);
+    }
+  }
