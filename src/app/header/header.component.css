@@ -1,0 +1,23 @@
+.sidenav-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 64px; /* default height */
+}
+
+.app-content {
+  margin-top: 64px; /* same as toolbar height */
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.spacer {
+  flex: 1;
+}

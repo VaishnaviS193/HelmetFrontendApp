@@ -1,0 +1,10 @@
+<div class="profile-container">
+  <h2>Edit Profile</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Full Name</mat-label>
+    <input matInput [(ngModel)]="userName" placeholder="Enter your name" />
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="saveChanges()">Save Changes</button>
+</div>

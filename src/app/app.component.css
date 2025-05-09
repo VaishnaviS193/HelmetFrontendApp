@@ -1,0 +1,33 @@
+/* Full height layout for sidenav and content */
+.sidenav-container {
+  height: 100vh;
+}
+
+/* Fixed header at top */
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 1000;
+}
+
+/* Ensure main content is pushed below header */
+.app-content {
+  margin-top: 64px; /* same as toolbar height */
+  padding: 2rem;
+  min-height: calc(100vh - 64px - 60px); /* subtract header + footer height */
+}
+
+/* Footer at bottom */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Push menu buttons to the right */
+.spacer {
+  flex: 1 1 auto;
+}

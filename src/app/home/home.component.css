@@ -1,0 +1,5 @@
+/* Remove any margin-top or extra padding from here */
+.main-content {
+  text-align: center;
+  /* Remove unnecessary top padding if any */
+}
