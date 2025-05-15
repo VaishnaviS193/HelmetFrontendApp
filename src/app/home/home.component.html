@@ -7,3 +7,12 @@
     Rent smart helmets, return them at any station, and manage your wallet — all in one app.
   </p>
 </div>
+
+  <!-- Image Carousel -->
+  <div class="carousel-container">
+  <ngb-carousel *ngIf="images.length">
+    <ng-template ngbSlide *ngFor="let img of images; let i = index">
+      <img [src]="img" class="carousel-img" alt="Slide {{ i + 1 }}" />
+    </ng-template>
+  </ngb-carousel>
+</div>

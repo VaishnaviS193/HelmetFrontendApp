@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { OtpserviceService } from '../otpservice.service';
 
+
 @Component({
-  selector: 'app-register-component',
+  selector: 'app-register',
   templateUrl: './register-component.component.html',
   styleUrls: ['./register-component.component.css']
 })
-export class RegisterComponentComponent{
+
+
+export class RegisterComponent{
   phone: string = '';
   otp: string[] = ['', '', '', '', '', ''];
   otpDigits = Array(6).fill(0);

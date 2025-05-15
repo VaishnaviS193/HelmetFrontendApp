@@ -1,33 +1,27 @@
-/* Full height layout for sidenav and content */
 .sidenav-container {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Fixed header at top */
 mat-toolbar {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
+  width: 100%;
   z-index: 1000;
+  height: 64px; /* default height */
 }
 
-/* Ensure main content is pushed below header */
 .app-content {
-  margin-top: 64px; /* same as toolbar height */
+  margin-top: 64px; /* offset for fixed toolbar */
   padding: 2rem;
-  min-height: calc(100vh - 64px - 60px); /* subtract header + footer height */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Footer at bottom */
 .footer {
+  margin-top: auto; /* Ensures footer stays at the bottom */
   text-align: center;
   padding: 1rem;
-  margin-top: auto;
-}
-
-/* Push menu buttons to the right */
-.spacer {
-  flex: 1 1 auto;
 }

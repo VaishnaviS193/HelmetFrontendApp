@@ -7,8 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponentComponent } from './register-component/register-component.component';
-import { LoginComponentComponent } from './login-component/login-component.component';
+import { RegisterComponent } from './register-component/register-component.component';
+
 import { LandingComponentComponent } from './landing-component/landing-component.component';
 
 
@@ -21,27 +21,37 @@ import { TransactionHistoryComponent } from './transaction-history/transaction-h
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VendHelmetComponent } from './vend-helmet/vend-helmet.component';
+import { ReturnComponentComponent } from './return-component/return-component.component';
+import { VendPopupComponent } from './vend-popup/vend-popup.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponentComponent,
-    LoginComponentComponent,
+    RegisterComponent,
     LandingComponentComponent,
     HomeComponent,
     RechargeWalletComponent,
     HeaderComponent,
     EditProfileComponent,
-    TransactionHistoryComponent, 
+    TransactionHistoryComponent,
+    ReturnComponentComponent,
+    ReturnComponentComponent,
+    VendHelmetComponent,
+    VendPopupComponent,  
     // ✅ Add this component here
   ],
+  
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // ✅ Replace provideAnimationsAsync() with this
@@ -58,6 +68,9 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    MatDialogModule,
+    NgbModule,
+
 
   ],
   providers: [],

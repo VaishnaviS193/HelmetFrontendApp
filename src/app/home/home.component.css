@@ -3,3 +3,19 @@
   text-align: center;
   /* Remove unnecessary top padding if any */
 }
+.home-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.carousel-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.carousel-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}

@@ -1,0 +1,32 @@
+<div class="vend-container">
+  <h2>Helmet Vending</h2>
+
+  <label for="location">Enter Your Location:</label>
+  <input
+    id="location"
+    [(ngModel)]="location"
+    placeholder="e.g. Vajarahalli"
+  />
+
+  <!-- Disable until location.trim() is non-empty -->
+  <button
+    (click)="searchHelmets()"
+    [disabled]="!location || !location.trim()"
+  >
+    Search Helmets
+  </button>
+
+  <div *ngIf="isHelmetListVisible && helmets.length > 0" class="helmet-list">
+    <h3>Available Helmets:</h3>
+    <ul>
+      <li *ngFor="let helmet of helmets">
+        Helmet ID: {{ helmet.id }} – Status: {{ helmet.status }}
+        <button (click)="vendHelmet(helmet.id)">Vend</button>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="isHelmetListVisible && helmets.length === 0">
+    <p>No helmets found at this location.</p>
+  </div>
+</div>
