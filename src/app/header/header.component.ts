@@ -62,6 +62,7 @@ export class HeaderComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'registered') {
         this.isAuthenticated = true;
+        this.router.navigate(['/home']); 
       }
     });
   }
