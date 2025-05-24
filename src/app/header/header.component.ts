@@ -1,42 +1,7 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-header',
-//   templateUrl: './header.component.html',
-//   styleUrl: './header.component.css'
-// })
-// export class HeaderComponent {
-
-// }
-
-
-// import { Component } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { MatSidenav } from '@angular/material/sidenav';
-
-// @Component({
-//   selector: 'app-header',
-//   templateUrl: './header.component.html',
-//   styleUrls: ['./header.component.css']
-// })
-// export class HeaderComponent {
-//   constructor(private router: Router) {}
-
-//   // Navigate to the specified route
-//   navigateTo(route: string) {
-//     this.router.navigate([route]);
-//   }
-// }
-
-
-
-
-
-
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-
+import { MatSidenav } from '@angular/material/sidenav';
 import { RegisterComponent } from '../register-component/register-component.component';
 
 
@@ -45,31 +10,55 @@ import { RegisterComponent } from '../register-component/register-component.comp
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  isAuthenticated = false;
+export class HeaderComponent implements OnInit {
+  @ViewChild('drawer') drawer!: MatSidenav;// <- IMPORTANT
+
+  isAuthenticated: boolean = false;
 
   constructor(private router: Router, private dialog: MatDialog) {}
 
-  // Navigate to a specific route
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  ngOnInit(): void {
+    const storedUser = localStorage.getItem('phone');
+    this.isAuthenticated = !!storedUser;
   }
 
-  // Open registration dialog
+  // Navigation with auth check for vend
+  navigateTo(route: string) {
+    if (route === 'vend' && !this.isAuthenticated) {
+      this.openRegisterDialog();
+    } else {
+      this.router.navigate([`/${route}`]);
+    }
+  }
+
   openRegisterDialog() {
     const dialogRef = this.dialog.open(RegisterComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'registered') {
         this.isAuthenticated = true;
-        this.router.navigate(['/home']); 
+        const storedUser = localStorage.getItem('phone');
+        if (storedUser) {
+          this.router.navigate(['/home']);
+        }
       }
     });
   }
 
+  // This toggles the side nav drawer
+  toggleProfileNav() {
+    if (this.isAuthenticated && this.drawer) {
+      this.drawer.toggle();
+    }
+  }
+
   logout() {
     this.isAuthenticated = false;
+    localStorage.removeItem('phone');
     this.router.navigate(['/home']);
+    // close drawer on logout if open
+    if (this.drawer && this.drawer.opened) {
+      this.drawer.close();
+    }
   }
 }
-

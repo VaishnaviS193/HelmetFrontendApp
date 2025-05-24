@@ -1,67 +1,6 @@
-<!-- <mat-toolbar color="primary">
-  <span>Smart Helmet Rental</span>
-  <span class="spacer"></span>
--->
-    <!-- Navigation Links -->
-  <!-- 
-    <button mat-button routerLink="/home">Home</button>
-  <button mat-button routerLink="/vend-helmet">Vend</button>
-  <button mat-button routerLink="/return-helmet">Return</button>
-  <button mat-button routerLink="/recharge-wallet">Recharge</button>
--->
-  <!-- Profile Icon -->
-  <!-- 
-  <button mat-icon-button routerLink="/profile" aria-label="Profile">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar> 
--->
 <mat-sidenav-container class="sidenav-container">
-  <!-- Side Menu (Drawer) -->
   <mat-sidenav #drawer mode="over" position="end" class="side-nav">
     <h3 class="menu-title">Profile</h3>
-    <mat-nav-list>
-      <mat-list-item (click)="navigateTo('edit-profile'); drawer.close()">
-        <mat-icon>edit</mat-icon>
-        <span>Edit Profile</span>
-      </mat-list-item>
-
-      <mat-list-item (click)="navigateTo('transaction-history'); drawer.close()">
-        <mat-icon>history</mat-icon>
-        <span>Transaction History</span>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <!-- Top Toolbar -->
-  <mat-toolbar color="primary">
-    <span>Smart Helmet Rental</span>
-    <span class="spacer"></span>
-
-    <!-- Navigation Links -->
-    <button mat-button routerLink="/home">Home</button>
-    <button mat-button routerLink="/vend">Vend</button>
-    <button mat-button routerLink="/return-helmet">Return</button>
-    <button mat-button routerLink="/recharge-wallet">Recharge</button>
-
-    <!-- Profile Icon that Opens Drawer -->
-    <button mat-icon-button (click)="drawer.toggle()" aria-label="Profile">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-  </mat-toolbar>
-</mat-sidenav-container>
-
-
-
-
-
-
-
-
-<mat-sidenav-container class="sidenav-container">
-  <!-- Side Menu (Drawer) -->
-  <mat-sidenav #drawer mode="over" position="end" class="side-nav">
-    <h3 class="menu-title">Profile</h3> 
     <mat-nav-list>
       <mat-list-item (click)="navigateTo('edit-profile'); drawer.close()">
         <mat-icon>edit</mat-icon>
@@ -78,26 +17,24 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <!-- Top Toolbar -->
- <mat-toolbar color="primary">
+  <mat-toolbar color="primary">
     <span>Smart Helmet Rental</span>
     <span class="spacer"></span>
 
     <ng-container *ngIf="isAuthenticated; else guestNav">
       <button mat-button routerLink="/home">Home</button>
-      <button mat-button routerLink="/vend-helmet">Vend</button>
-      <button mat-button routerLink="/return-helmet">Return</button>
-      <button mat-button routerLink="/recharge-wallet">Recharge</button> 
+      <button mat-button (click)="navigateTo('vend')">Vend</button>
+      <!-- <button mat-button routerLink="/return-helmet">Return</button> -->
+      <button mat-button routerLink="/recharge-wallet">Recharge</button>
 
       <!-- Profile Icon -->
-      <button mat-icon-button (click)="drawer.toggle()" aria-label="Profile">
+      <button mat-icon-button (click)="toggleProfileNav()" aria-label="Profile">
         <mat-icon>account_circle</mat-icon>
       </button>
     </ng-container>
 
     <ng-template #guestNav>
-      <!-- Register Button (for guests) -->
-    <button mat-icon-button (click)="openRegisterDialog()" aria-label="Register">
+      <button mat-icon-button (click)="openRegisterDialog()" aria-label="Register">
         <mat-icon>person_add</mat-icon>
       </button>
     </ng-template>
