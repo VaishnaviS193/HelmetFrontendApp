@@ -1,19 +1,21 @@
 <div class="otp-container">
-    <h2>Verify Your Phone</h2>
-  
-    <input type="text" placeholder="+91xxxxxxxxxx" [(ngModel)]="phone" class="phone-input" />
-  
-    <button (click)="sendOtp()">Send OTP</button>
-  
-    <div *ngIf="otpSent">
-      <h3>Enter OTP</h3>
-      <div class="otp-inputs">
-        <input maxlength="1" *ngFor="let digit of otpDigits; let i = index"
-               [(ngModel)]="otp[i]" class="otp-box" />
-      </div>
-      <button (click)="verifyOtp()">Verify</button>
+  <h2>Verify Your Phone</h2>
+
+  <!-- New Name Input -->
+  <input type="text" placeholder="Enter your name" [(ngModel)]="name" class="name-input" />
+
+  <input type="text" placeholder="+91xxxxxxxxxx" [(ngModel)]="phone" class="phone-input" />
+
+  <button (click)="sendOtp()">Send OTP</button>
+
+  <div *ngIf="otpSent">
+    <h3>Enter OTP</h3>
+    <div class="otp-inputs">
+      <input maxlength="1" *ngFor="let digit of otpDigits; let i = index"
+             [(ngModel)]="otp[i]" class="otp-box" />
     </div>
-  
-    <p class="status">{{ statusMessage }}</p>
+    <button (click)="verifyOtp()">Verify</button>
   </div>
-  
+
+  <p class="status">{{ statusMessage }}</p>
+</div>

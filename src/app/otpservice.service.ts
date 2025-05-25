@@ -21,10 +21,11 @@ export class OtpserviceService {
   }
 
   // Verify OTP for a given phone number
-  verifyOtp(phone: string, code: string): Observable<any> {
+  verifyOtp(phone: string, code: string, name: string): Observable<any> {
     const body = new HttpParams()
       .set('phone', phone)
       .set('code', code);  // URL encode phone and code
+      
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http.post(`${this.baseUrl}/verify`, body.toString(), {

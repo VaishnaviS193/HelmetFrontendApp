@@ -13,6 +13,7 @@ export class HelmetTransactionService {
 
   private helmetBaseUrl = 'http://localhost:8080/api/helmets';
   private transactionBaseUrl = 'http://localhost:8080/api/transactions';
+  getAllHelmets: any;
 
   constructor(private http: HttpClient) {}
 

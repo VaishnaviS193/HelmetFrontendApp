@@ -11,9 +11,9 @@ import { VendPopupComponent } from '../vend-popup/vend-popup.component';
 })
 export class VendHelmetComponent implements OnInit {
   location: string = '';
-  locations: string[] = []; // holds location names
+  locations: string[] = [];
   helmets: any[] = [];
-  isHelmetListVisible = false;
+  isHelmetListVisible = false; 
 
   constructor(
     private dialog: MatDialog,
@@ -24,7 +24,6 @@ export class VendHelmetComponent implements OnInit {
   ngOnInit() {
     this.locationService.getAllLocations().subscribe({
       next: (response) => {
-        // Map response to extract just location names
         this.locations = response.map((loc: any) => loc.name);
       },
       error: (err) => {
@@ -39,7 +38,6 @@ export class VendHelmetComponent implements OnInit {
       alert('Please select a location.');
       return;
     }
-
     this.locationService.getHelmetsByLocation(this.location).subscribe({
       next: (helmets) => {
         this.helmets = helmets;
@@ -51,9 +49,9 @@ export class VendHelmetComponent implements OnInit {
       }
     });
   }
-
   vendHelmet(helmetId: number) {
-    const userId = 123; // replace with real user ID
+    const userId = Number(localStorage.getItem('userId')); // Replace with AuthService if available
+
     this.helmetService.vendHelmet(userId, helmetId, this.location).subscribe({
       next: (response) => {
         const unlockCode = response.code;
@@ -69,5 +67,3 @@ export class VendHelmetComponent implements OnInit {
     });
   }
 }
-
-

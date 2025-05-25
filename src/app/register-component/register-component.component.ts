@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';  // import AuthService
   styleUrls: ['./register-component.component.css']
 })
 export class RegisterComponent {
+  name: string = '';
   phone: string = '';
   otp: string[] = ['', '', '', '', '', ''];
   otpDigits = Array(6).fill(0);
@@ -36,7 +37,7 @@ export class RegisterComponent {
 
   verifyOtp() {
     const otpCode = this.otp.join('');
-    this.otpService.verifyOtp(this.phone, otpCode).subscribe({
+    this.otpService.verifyOtp(this.phone, otpCode,this.name).subscribe({
       next: (res: any) => {
         this.statusMessage = 'Verification successful';
 

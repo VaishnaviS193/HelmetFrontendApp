@@ -1,18 +1,13 @@
 <div class="vend-container">
   <h2>Helmet Vending</h2>
 
-  <label for="location">Select Location:</label>
+  <label for="location">Choose Location:</label>
   <select id="location" [(ngModel)]="location">
-    <option value="">-- Choose Location --</option>
+    <option value="">-- Select Location --</option>
     <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
   </select>
 
-  <button
-    (click)="searchHelmets()"
-    [disabled]="!location || !location.trim()"
-  >
-    Search Helmets
-  </button>
+  <button (click)="searchHelmets()" [disabled]="!location">Search Helmets</button>
 
   <div *ngIf="isHelmetListVisible && helmets.length > 0" class="helmet-list">
     <h3>Available Helmets:</h3>

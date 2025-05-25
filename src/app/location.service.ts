@@ -6,19 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LocationService {
-  private apiUrl = 'http://localhost:8080/api/location';
+  private baseUrl = 'http://localhost:8080/api/locations';
 
   constructor(private http: HttpClient) {}
 
-  // Get helmets by location name
-  getHelmetsByLocation(locationName: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${locationName}/helmets`);
+  // Get all available locations
+  getAllLocations(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
   }
 
-  // (Optional) Get list of all locations
-  getAllLocations(): Observable<any[]> {
-  return this.http.get<any[]>('http://localhost:8080/api/location');
-}
-
-
+  // Get helmets by location name
+  getHelmetsByLocation(location: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/${location}/helmets`);
+  }
 }
