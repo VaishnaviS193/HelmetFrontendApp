@@ -1,14 +1,12 @@
 <div class="vend-container">
   <h2>Helmet Vending</h2>
 
-  <label for="location">Enter Your Location:</label>
-  <input
-    id="location"
-    [(ngModel)]="location"
-    placeholder="e.g. Vajarahalli"
-  />
+  <label for="location">Select Location:</label>
+  <select id="location" [(ngModel)]="location">
+    <option value="">-- Choose Location --</option>
+    <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+  </select>
 
-  <!-- Disable until location.trim() is non-empty -->
   <button
     (click)="searchHelmets()"
     [disabled]="!location || !location.trim()"

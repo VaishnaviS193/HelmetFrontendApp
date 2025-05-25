@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { HelmetTransactionService } from '../helmet-transaction.service';
+import { LocationService } from '../location.service';
 import { VendPopupComponent } from '../vend-popup/vend-popup.component';
 
 @Component({
@@ -7,47 +9,65 @@ import { VendPopupComponent } from '../vend-popup/vend-popup.component';
   templateUrl: './vend-helmet.component.html',
   styleUrls: ['./vend-helmet.component.css']
 })
-export class VendHelmetComponent {
+export class VendHelmetComponent implements OnInit {
   location: string = '';
-  helmets = [
-    { id: 1, status: 'Available' },
-    { id: 2, status: 'Available' }
-  ];
+  locations: string[] = []; // holds location names
+  helmets: any[] = [];
   isHelmetListVisible = false;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private helmetService: HelmetTransactionService,
+    private locationService: LocationService
+  ) {}
+
+  ngOnInit() {
+    this.locationService.getAllLocations().subscribe({
+      next: (response) => {
+        // Map response to extract just location names
+        this.locations = response.map((loc: any) => loc.name);
+      },
+      error: (err) => {
+        console.error('Failed to load locations:', err);
+        alert('Error loading locations. Please try again.');
+      }
+    });
+  }
 
   searchHelmets() {
     if (!this.location.trim()) {
-      alert('Please enter a location to search helmets.');
+      alert('Please select a location.');
       return;
     }
-    // Simulated helmet search (can later call backend here)
-    this.isHelmetListVisible = true;
+
+    this.locationService.getHelmetsByLocation(this.location).subscribe({
+      next: (helmets) => {
+        this.helmets = helmets;
+        this.isHelmetListVisible = true;
+      },
+      error: (err) => {
+        console.error('Error fetching helmets:', err);
+        alert('No helmets found or server error.');
+      }
+    });
   }
 
   vendHelmet(helmetId: number) {
-    if (!this.location.trim()) {
-      alert('Location is required before vending a helmet.');
-      return;
-    }
-
-    // Simulate backend API call to vend helmet
-    const userId = 123; // Simulated logged-in user ID
-    const unlockCode = Math.floor(10000 + Math.random() * 90000); // 5-digit code
-
-    // Later: Replace this with an actual service call
-    const payload = {
-      userId: userId,
-      helmetId: helmetId,
-      location: this.location,
-      unlockCode: unlockCode
-    };
-    console.log('Sending vend API call with payload:', payload);
-
-    this.dialog.open(VendPopupComponent, {
-      data: { helmetId, unlockCode },
-      width: '300px'
+    const userId = 123; // replace with real user ID
+    this.helmetService.vendHelmet(userId, helmetId, this.location).subscribe({
+      next: (response) => {
+        const unlockCode = response.code;
+        this.dialog.open(VendPopupComponent, {
+          data: { helmetId, unlockCode },
+          width: '300px'
+        });
+      },
+      error: (err) => {
+        console.error('Failed to vend helmet:', err);
+        alert('Failed to vend helmet.');
+      }
     });
   }
 }
+
+
